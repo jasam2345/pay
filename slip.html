@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Payslip - TechIndia Solutions Pvt Ltd</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1c1ce9",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#111121",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            .print-area {
+                box-shadow: none !important;
+                border: none !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                width: 100% !important;
+            }
+            body {
+                background-color: white !important;
+            }
+        }
+        .tabular-nums {
+            font-variant-numeric: tabular-nums;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Navigation Bar (Non-Printable) -->
+<header class="no-print sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md px-6 md:px-10 py-3">
+<div class="flex items-center gap-4 text-primary">
+<div class="size-8 flex items-center justify-center bg-primary rounded-lg text-white">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-tight">Payroll Portal</h2>
+</div>
+<div class="flex flex-1 justify-end gap-4 items-center">
+<nav class="hidden md:flex gap-6 mr-6">
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary font-medium text-sm transition-colors" href="#">Dashboard</a>
+<a class="text-primary font-medium text-sm" href="#">My Payslips</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary font-medium text-sm transition-colors" href="#">Tax Declaration</a>
+</nav>
+<div class="flex gap-2">
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-slate-200 dark:border-slate-700" data-alt="User profile avatar of Rahul Sharma" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCPKDZmpCrRhhOf458PhhCepP6bpXqC8BWOvwcU5iEuyeT_YSpg4xzFMvpQgFXJdnVajeDNDBFaVJGftw0mQi43mCIqANj71-UeBlgjnEooaYJGHqtQ9BbQHv2d0Lc177l9vFEM3XqUm9S7_U92GJ9XqCSXwuTHVpR0rF0cRzrQu90EzDApbDKtaGBHvUjKzAbdVN2flja07Ld6eZ1cXuLJs4QVh5V9K2uPLgE-IhJxHJNyG4M6AzMc2scYCb-b1Wqu7ggQUUDcfLM");'></div>
+</div>
+</div>
+</header>
+<main class="flex-1 flex flex-col items-center py-8 px-4 md:px-10">
+<!-- Breadcrumb and Actions (Non-Printable) -->
+<div class="no-print w-full max-w-[900px] flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+<div class="flex items-center gap-2 text-sm">
+<a class="text-slate-500 hover:text-primary transition-colors" href="#">Dashboard</a>
+<span class="text-slate-400">/</span>
+<a class="text-slate-500 hover:text-primary transition-colors" href="#">Payslips</a>
+<span class="text-slate-400">/</span>
+<span class="text-slate-900 dark:text-white font-semibold">October 2023</span>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 text-sm font-semibold hover:bg-slate-50 dark:hover:bg-slate-700 transition-all" onclick="window.print()">
+<span class="material-symbols-outlined text-[18px]">print</span>
+                        Print
+                    </button>
+<button class="flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-primary text-white text-sm font-semibold hover:bg-blue-700 transition-all shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                        Download PDF
+                    </button>
+</div>
+</div>
+<!-- Payslip Document Area -->
+<div class="print-area w-full max-w-[900px] bg-white dark:bg-slate-900 shadow-2xl shadow-slate-200/50 dark:shadow-none border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden mb-12">
+<!-- Document Header -->
+<div class="p-8 md:p-12 border-b border-slate-100 dark:border-slate-800">
+<div class="flex flex-col md:flex-row justify-between gap-6">
+<div class="flex items-start gap-4">
+<div class="size-14 bg-primary/10 rounded-xl flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[32px]">domain</span>
+</div>
+<div>
+<h1 class="text-2xl font-bold text-slate-900 dark:text-white">TechIndia Solutions Pvt Ltd</h1>
+<p class="text-slate-500 dark:text-slate-400 text-sm mt-1 max-w-xs leading-relaxed">
+                                    123 Business Park, Level 5, Wing B,<br/>
+                                    Mumbai, Maharashtra - 400001, India
+                                </p>
+</div>
+</div>
+<div class="md:text-right">
+<div class="inline-flex items-center px-3 py-1 rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs font-bold uppercase tracking-wider mb-2">
+<span class="size-1.5 rounded-full bg-green-500 mr-2"></span> Paid
+                            </div>
+<h2 class="text-xl font-bold text-slate-900 dark:text-white">Payslip for October 2023</h2>
+<p class="text-slate-500 text-sm">Pay Date: Oct 31, 2023</p>
+</div>
+</div>
+</div>
+<!-- Employee Info Grid -->
+<div class="p-8 md:p-12 bg-slate-50/50 dark:bg-slate-800/20 grid grid-cols-1 md:grid-cols-2 gap-y-6 gap-x-12 border-b border-slate-100 dark:border-slate-800">
+<div class="space-y-4">
+<div class="flex justify-between border-b border-slate-200 dark:border-slate-700 pb-2">
+<span class="text-slate-500 text-sm font-medium">Employee Name</span>
+<span class="text-slate-900 dark:text-white text-sm font-semibold">Rahul Sharma</span>
+</div>
+<div class="flex justify-between border-b border-slate-200 dark:border-slate-700 pb-2">
+<span class="text-slate-500 text-sm font-medium">Employee ID</span>
+<span class="text-slate-900 dark:text-white text-sm font-semibold">EMP-1024</span>
+</div>
+<div class="flex justify-between border-b border-slate-200 dark:border-slate-700 pb-2">
+<span class="text-slate-500 text-sm font-medium">Designation</span>
+<span class="text-slate-900 dark:text-white text-sm font-semibold text-right">Senior Software Engineer</span>
+</div>
+<div class="flex justify-between border-b border-slate-200 dark:border-slate-700 pb-2">
+<span class="text-slate-500 text-sm font-medium">Department</span>
+<span class="text-slate-900 dark:text-white text-sm font-semibold">Engineering</span>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between border-b border-slate-200 dark:border-slate-700 pb-2">
+<span class="text-slate-500 text-sm font-medium">Bank Account</span>
+<span class="text-slate-900 dark:text-white text-sm font-semibold">XXXXXX7890</span>
+</div>
+<div class="flex justify-between border-b border-slate-200 dark:border-slate-700 pb-2">
+<span class="text-slate-500 text-sm font-medium">Bank Name</span>
+<span class="text-slate-900 dark:text-white text-sm font-semibold">HDFC Bank Ltd</span>
+</div>
+<div class="flex justify-between border-b border-slate-200 dark:border-slate-700 pb-2">
+<span class="text-slate-500 text-sm font-medium">PAN Number</span>
+<span class="text-slate-900 dark:text-white text-sm font-semibold uppercase">ABCDE1234F</span>
+</div>
+<div class="flex justify-between border-b border-slate-200 dark:border-slate-700 pb-2">
+<span class="text-slate-500 text-sm font-medium">UAN Number</span>
+<span class="text-slate-900 dark:text-white text-sm font-semibold">100567891234</span>
+</div>
+</div>
+</div>
+<!-- Earnings and Deductions Table -->
+<div class="grid grid-cols-1 md:grid-cols-2">
+<!-- Earnings -->
+<div class="border-r border-slate-100 dark:border-slate-800">
+<div class="bg-slate-100 dark:bg-slate-800 px-8 py-3">
+<h3 class="font-bold text-xs uppercase tracking-widest text-slate-600 dark:text-slate-300">Earnings</h3>
+</div>
+<div class="p-8 space-y-4">
+<div class="flex justify-between">
+<span class="text-slate-600 dark:text-slate-400 text-sm">Basic Salary</span>
+<span class="text-slate-900 dark:text-white font-medium tabular-nums">₹ 60,000.00</span>
+</div>
+<div class="flex justify-between">
+<span class="text-slate-600 dark:text-slate-400 text-sm">HRA (House Rent Allowance)</span>
+<span class="text-slate-900 dark:text-white font-medium tabular-nums">₹ 30,000.00</span>
+</div>
+<div class="flex justify-between">
+<span class="text-slate-600 dark:text-slate-400 text-sm">Special Allowance</span>
+<span class="text-slate-900 dark:text-white font-medium tabular-nums">₹ 25,000.00</span>
+</div>
+<div class="flex justify-between">
+<span class="text-slate-600 dark:text-slate-400 text-sm">Conveyance Allowance</span>
+<span class="text-slate-900 dark:text-white font-medium tabular-nums">₹ 8,000.00</span>
+</div>
+<div class="pt-8 mt-4 border-t border-dashed border-slate-200 dark:border-slate-700">
+<div class="flex justify-between">
+<span class="font-bold text-slate-900 dark:text-white">Total Earnings</span>
+<span class="font-bold text-slate-900 dark:text-white tabular-nums">₹ 1,23,000.00</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Deductions -->
+<div>
+<div class="bg-slate-100 dark:bg-slate-800 px-8 py-3">
+<h3 class="font-bold text-xs uppercase tracking-widest text-slate-600 dark:text-slate-300">Deductions</h3>
+</div>
+<div class="p-8 space-y-4">
+<div class="flex justify-between">
+<span class="text-slate-600 dark:text-slate-400 text-sm">Provident Fund (PF)</span>
+<span class="text-slate-900 dark:text-white font-medium tabular-nums">₹ 1,800.00</span>
+</div>
+<div class="flex justify-between">
+<span class="text-slate-600 dark:text-slate-400 text-sm">Professional Tax</span>
+<span class="text-slate-900 dark:text-white font-medium tabular-nums">₹ 200.00</span>
+</div>
+<div class="flex justify-between">
+<span class="text-slate-600 dark:text-slate-400 text-sm">TDS (Income Tax)</span>
+<span class="text-slate-900 dark:text-white font-medium tabular-nums">₹ 9,000.00</span>
+</div>
+<div class="flex justify-between">
+<span class="text-slate-600 dark:text-slate-400 text-sm">Health Insurance Premium</span>
+<span class="text-slate-900 dark:text-white font-medium tabular-nums">₹ 0.00</span>
+</div>
+<div class="pt-8 mt-4 border-t border-dashed border-slate-200 dark:border-slate-700">
+<div class="flex justify-between">
+<span class="font-bold text-slate-900 dark:text-white">Total Deductions</span>
+<span class="font-bold text-slate-900 dark:text-white tabular-nums">₹ 11,000.00</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Net Pay Summary -->
+<div class="p-8 md:p-12 border-t border-slate-200 dark:border-slate-700 bg-primary/5 dark:bg-primary/10">
+<div class="flex flex-col md:flex-row justify-between items-center gap-6">
+<div>
+<p class="text-slate-600 dark:text-slate-400 font-medium mb-1">Amount in words</p>
+<p class="text-slate-900 dark:text-white font-semibold italic text-sm">One Lakh Twelve Thousand Rupees Only</p>
+</div>
+<div class="bg-primary rounded-xl px-8 py-6 text-center shadow-xl shadow-primary/20 min-w-[240px]">
+<p class="text-white/80 text-sm font-medium uppercase tracking-widest mb-1">Net Pay (Take Home)</p>
+<p class="text-white text-4xl font-extrabold tabular-nums">₹ 1,12,000</p>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<div class="p-8 text-center border-t border-slate-100 dark:border-slate-800">
+<p class="text-slate-400 dark:text-slate-500 text-xs italic">
+                        This is a computer-generated document and does not require a physical signature. 
+                        For any queries, please reach out to the HR department at hr@techindia.com
+                    </p>
+<div class="mt-6 flex justify-center gap-6">
+<div class="flex items-center gap-2 text-slate-300 dark:text-slate-700">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Verified System Output</span>
+</div>
+<div class="flex items-center gap-2 text-slate-300 dark:text-slate-700">
+<span class="material-symbols-outlined text-[16px]">lock</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Secure Payroll Encryption</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Additional Help/Support Links (Non-Printable) -->
+<div class="no-print w-full max-w-[900px] grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
+<a class="p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-primary transition-colors flex items-center gap-3" href="#">
+<div class="size-10 bg-slate-100 dark:bg-slate-700 rounded-lg flex items-center justify-center text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined">help</span>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-900 dark:text-white">Need help?</p>
+<p class="text-xs text-slate-500">Contact support</p>
+</div>
+</a>
+<a class="p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-primary transition-colors flex items-center gap-3" href="#">
+<div class="size-10 bg-slate-100 dark:bg-slate-700 rounded-lg flex items-center justify-center text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined">receipt_long</span>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-900 dark:text-white">Tax Savings</p>
+<p class="text-xs text-slate-500">View investment proof</p>
+</div>
+</a>
+<a class="p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-primary transition-colors flex items-center gap-3" href="#">
+<div class="size-10 bg-slate-100 dark:bg-slate-700 rounded-lg flex items-center justify-center text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined">history</span>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-900 dark:text-white">History</p>
+<p class="text-xs text-slate-500">View past payslips</p>
+</div>
+</a>
+</div>
+</main>
+<footer class="no-print border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark py-8 px-10">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-slate-500 text-sm">© 2023 TechIndia Solutions Pvt Ltd. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="text-slate-500 hover:text-primary text-sm transition-colors" href="#">Privacy Policy</a>
+<a class="text-slate-500 hover:text-primary text-sm transition-colors" href="#">Terms of Service</a>
+</div>
+</div>
+</footer>
+</div>
+</body></html>

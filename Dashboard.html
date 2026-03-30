@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Employee Payroll Management System</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1c1ce9",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#111121",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar -->
+<aside class="w-64 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col">
+<div class="p-6 flex items-center gap-3">
+<div class="size-10 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<div>
+<h1 class="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider">PayAdmin</h1>
+<p class="text-[10px] text-slate-500 font-medium">MANAGEMENT SYSTEM</p>
+</div>
+</div>
+<nav class="flex-1 px-4 py-4 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary text-white shadow-lg shadow-primary/20" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">group</span>
+<span class="text-sm font-medium">Employees</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">account_balance_wallet</span>
+<span class="text-sm font-medium">Payroll</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">description</span>
+<span class="text-sm font-medium">Payslips</span>
+</a>
+</nav>
+<div class="p-4 border-t border-slate-200 dark:border-slate-800">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-900/10 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+<span class="text-sm font-medium">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content -->
+<div class="flex-1 flex flex-col overflow-y-auto">
+<!-- Header -->
+<header class="h-16 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between px-8 sticky top-0 z-10">
+<div class="flex items-center gap-4">
+<h2 class="text-lg font-bold text-slate-800 dark:text-white">Payroll Dashboard</h2>
+<div class="hidden md:flex items-center bg-slate-100 dark:bg-slate-800 rounded-lg px-3 py-1.5 border border-transparent focus-within:border-primary/50 transition-all">
+<span class="material-symbols-outlined text-slate-400 text-[18px]">search</span>
+<input class="bg-transparent border-none text-sm focus:ring-0 placeholder:text-slate-400 w-64" placeholder="Search data..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="relative p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-rose-500 border-2 border-white dark:border-slate-900 rounded-full"></span>
+</button>
+<div class="h-8 w-px bg-slate-200 dark:bg-slate-800 mx-1"></div>
+<div class="flex items-center gap-3 pl-1">
+<div class="text-right hidden sm:block">
+<p class="text-xs font-bold text-slate-800 dark:text-white">Admin User</p>
+<p class="text-[10px] text-slate-500 font-medium">HR Manager</p>
+</div>
+<div class="size-10 rounded-full bg-slate-200 border-2 border-white dark:border-slate-800 overflow-hidden bg-cover bg-center" data-alt="Profile picture of the HR administrator" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCQY-2PxhfLcjUrjSzcSUdSPoyWBMdcXjs6Rix5YDblGJcAVyTXXGoqiM-9j5Q2wxsPuqEjSloAXiJKzG-UTQVm2EoMC46fRxXTzqhN3tOs5QDdHKE_VJR6LI443HgvuMXMwJ3sigWsTpHtd1qtOGxIHRhI0hBHyQe7g5N1WgEQLjD3yrOZn4aVnKxQ-AcsynjjsM3hBba-jGJGfI4as9aRZiPTcEnDO3JymrR8tNo5MgGhEFtDnZqLEpgNawJRi5kvIAa8oFeNjhU')"></div>
+</div>
+</div>
+</header>
+<!-- Content Area -->
+<main class="p-8 space-y-8">
+<!-- Summary Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
+<!-- Card 1 -->
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-4">
+<span class="text-slate-500 text-xs font-semibold uppercase tracking-wider">Total Employees</span>
+<div class="size-8 bg-blue-50 dark:bg-blue-900/20 text-blue-600 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">badge</span>
+</div>
+</div>
+<div>
+<p class="text-2xl font-bold text-slate-900 dark:text-white">120</p>
+<p class="text-xs text-emerald-600 font-medium flex items-center mt-1">
+<span class="material-symbols-outlined text-[14px] mr-1">trending_up</span>
+                                +2% from last month
+                            </p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-4">
+<span class="text-slate-500 text-xs font-semibold uppercase tracking-wider">Monthly Payroll</span>
+<div class="size-8 bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">payments</span>
+</div>
+</div>
+<div>
+<p class="text-2xl font-bold text-slate-900 dark:text-white">₹8,50,000</p>
+<p class="text-xs text-emerald-600 font-medium flex items-center mt-1">
+<span class="material-symbols-outlined text-[14px] mr-1">trending_up</span>
+                                +5% from last month
+                            </p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-4">
+<span class="text-slate-500 text-xs font-semibold uppercase tracking-wider">Paid Salaries</span>
+<div class="size-8 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+</div>
+</div>
+<div>
+<p class="text-2xl font-bold text-slate-900 dark:text-white">₹6,75,000</p>
+<p class="text-xs text-rose-500 font-medium flex items-center mt-1">
+<span class="material-symbols-outlined text-[14px] mr-1">trending_down</span>
+                                -3% from last month
+                            </p>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-4">
+<span class="text-slate-500 text-xs font-semibold uppercase tracking-wider">Pending Payments</span>
+<div class="size-8 bg-amber-50 dark:bg-amber-900/20 text-amber-600 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">pending_actions</span>
+</div>
+</div>
+<div>
+<p class="text-2xl font-bold text-slate-900 dark:text-white">₹1,75,000</p>
+<p class="text-xs text-emerald-600 font-medium flex items-center mt-1">
+<span class="material-symbols-outlined text-[14px] mr-1">trending_up</span>
+                                +12% from last month
+                            </p>
+</div>
+</div>
+</div>
+<!-- Recent Activity Table Section -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+<div class="px-6 py-5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+<div>
+<h3 class="text-lg font-bold text-slate-800 dark:text-white">Recent Payroll Activity</h3>
+<p class="text-sm text-slate-500">List of transactions for the current month</p>
+</div>
+<button class="px-4 py-2 text-sm font-semibold text-primary bg-primary/10 hover:bg-primary/20 rounded-lg transition-colors">
+                            View All History
+                        </button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-slate-50 dark:bg-slate-800/50">
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Employee Name</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Payment Date</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-right">Amount</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-center">Status</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-center">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-200 dark:divide-slate-800">
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-700 font-bold text-xs uppercase">RK</div>
+<span class="text-sm font-medium text-slate-900 dark:text-white">Rajesh Kumar</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">05 Oct 2023</td>
+<td class="px-6 py-4 text-sm font-bold text-slate-900 dark:text-white text-right">₹45,000</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400">
+                                            Paid
+                                        </span>
+</td>
+<td class="px-6 py-4 text-center">
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-pink-100 flex items-center justify-center text-pink-700 font-bold text-xs uppercase">PS</div>
+<span class="text-sm font-medium text-slate-900 dark:text-white">Priya Sharma</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">05 Oct 2023</td>
+<td class="px-6 py-4 text-sm font-bold text-slate-900 dark:text-white text-right">₹62,000</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400">
+                                            Paid
+                                        </span>
+</td>
+<td class="px-6 py-4 text-center">
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-bold text-xs uppercase">AS</div>
+<span class="text-sm font-medium text-slate-900 dark:text-white">Amit Singh</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">04 Oct 2023</td>
+<td class="px-6 py-4 text-sm font-bold text-slate-900 dark:text-white text-right">₹38,000</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400">
+                                            Pending
+                                        </span>
+</td>
+<td class="px-6 py-4 text-center">
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-700 font-bold text-xs uppercase">SV</div>
+<span class="text-sm font-medium text-slate-900 dark:text-white">Sunil Verma</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">04 Oct 2023</td>
+<td class="px-6 py-4 text-sm font-bold text-slate-900 dark:text-white text-right">₹55,000</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400">
+                                            Paid
+                                        </span>
+</td>
+<td class="px-6 py-4 text-center">
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-purple-100 flex items-center justify-center text-purple-700 font-bold text-xs uppercase">AG</div>
+<span class="text-sm font-medium text-slate-900 dark:text-white">Anjali Gupta</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">03 Oct 2023</td>
+<td class="px-6 py-4 text-sm font-bold text-slate-900 dark:text-white text-right">₹42,000</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400">
+                                            Processing
+                                        </span>
+</td>
+<td class="px-6 py-4 text-center">
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-6 py-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between bg-slate-50/50 dark:bg-slate-800/20">
+<span class="text-xs text-slate-500 font-medium">Showing 5 of 120 employees</span>
+<div class="flex items-center gap-2">
+<button class="size-8 flex items-center justify-center rounded border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-400 hover:text-primary disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="size-8 flex items-center justify-center rounded border border-primary bg-primary text-white font-medium text-xs">1</button>
+<button class="size-8 flex items-center justify-center rounded border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-600 hover:border-primary hover:text-primary font-medium text-xs">2</button>
+<button class="size-8 flex items-center justify-center rounded border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-600 hover:border-primary hover:text-primary font-medium text-xs">3</button>
+<button class="size-8 flex items-center justify-center rounded border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-400 hover:text-primary">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Action row -->
+<div class="flex flex-col md:flex-row gap-6">
+<div class="flex-1 bg-gradient-to-br from-primary to-indigo-700 rounded-xl p-8 text-white relative overflow-hidden shadow-xl shadow-primary/20">
+<div class="relative z-10">
+<h3 class="text-xl font-bold mb-2">Ready for Next Payroll?</h3>
+<p class="text-indigo-100 text-sm mb-6 max-w-sm">October payroll generation cycle is ready. Review employee hours and bonuses before proceeding.</p>
+<button class="bg-white text-primary font-bold px-6 py-2.5 rounded-lg hover:bg-indigo-50 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined">rocket_launch</span>
+                                Start Payroll Cycle
+                            </button>
+</div>
+<span class="material-symbols-outlined absolute -bottom-8 -right-8 text-[180px] text-white/10 select-none pointer-events-none">paid</span>
+</div>
+<div class="w-full md:w-80 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
+<h4 class="font-bold text-slate-800 dark:text-white mb-4">Quick Links</h4>
+<div class="space-y-3">
+<a class="flex items-center justify-between p-3 rounded-lg border border-slate-100 dark:border-slate-800 hover:border-primary/30 transition-all group" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors">add_circle</span>
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300">Add Employee</span>
+</div>
+<span class="material-symbols-outlined text-[16px] text-slate-300">chevron_right</span>
+</a>
+<a class="flex items-center justify-between p-3 rounded-lg border border-slate-100 dark:border-slate-800 hover:border-primary/30 transition-all group" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors">picture_as_pdf</span>
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300">Tax Reports</span>
+</div>
+<span class="material-symbols-outlined text-[16px] text-slate-300">chevron_right</span>
+</a>
+<a class="flex items-center justify-between p-3 rounded-lg border border-slate-100 dark:border-slate-800 hover:border-primary/30 transition-all group" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors">settings</span>
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300">Payroll Settings</span>
+</div>
+<span class="material-symbols-outlined text-[16px] text-slate-300">chevron_right</span>
+</a>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>
